@@ -30,8 +30,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/camm/ChatyJS-Server.git"
+    "url": "git://github.com/ChatyJS/ChatyJS-Server.git"
   },
-  "author": "camm",
+  "author": "ChatyJS",
   "license": ""
 }
