@@ -16,6 +16,14 @@ module.exports = {
     },
     date:{
       type:'datetime'
+    },
+    messages:{
+      collection:'message',
+      via:'channel'
+    },
+    logins:{
+      collection:'login',
+      via:'channel'
     }
   }
 };

@@ -9,11 +9,13 @@ module.exports = {
 
   attributes: {
     name:{
-      type:'string'
+      type:'string',
+      required:true
     },
     email:{
       type:'email',
-      unique:true
+      unique:true,
+      required:true
     },
     status:{
       type:'boolean'
@@ -22,7 +24,16 @@ module.exports = {
       type:'integer'
     },
     password:{
-      type:'string'
+      type:'string',
+      required:true
+    },
+    contacts:{
+      collection:'contact',
+      via:'user'
+    },
+    logins:{
+      collection:'login',
+      via:'user'
     }
   }
 };

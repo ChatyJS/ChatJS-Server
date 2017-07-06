@@ -10,6 +10,9 @@ module.exports = {
   attributes: {
     text:{
       type:'longtext'
+    },
+    channel:{
+      model:'channel'
     }
   }
 };

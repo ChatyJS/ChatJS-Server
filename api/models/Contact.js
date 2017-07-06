@@ -10,10 +10,14 @@ module.exports = {
   attributes: {
 
     name:{
-      type:'string'
+      type:'string',
+      required:true
     },
     status:{
       type:'boolean'
+    },
+    user:{
+      model:'user'
     }
 
   }
