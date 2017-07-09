@@ -5,6 +5,8 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+var bcrypt = require('bcrypt');
+
 module.exports = {
 
   attributes: {
@@ -25,6 +27,7 @@ module.exports = {
     },
     password:{
       type:'string',
+      minLength: 6,
       required:true
     },
     contacts:{
@@ -35,5 +38,18 @@ module.exports = {
       collection:'login',
       via:'user'
     }
+  },
+  beforeCreate: function(user, callback) {
+    bcrypt.getSalt(10, function(error, salt) {
+      bcrypt.hash(user.password, salt, function(error, hash){
+        if(error) {
+          console.log("[ERROR]: ", error);
+          callback(error);
+        } else {
+          user.password = hash;
+          callback();
+        }
+      });
+    });
   }
 };
