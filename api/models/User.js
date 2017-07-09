@@ -40,7 +40,7 @@ module.exports = {
     }
   },
   beforeCreate: function(user, callback) {
-    bcrypt.getSalt(10, function(error, salt) {
+    bcrypt.genSalt(10, function(error, salt) {
       bcrypt.hash(user.password, salt, function(error, hash){
         if(error) {
           console.log("[ERROR]: ", error);
