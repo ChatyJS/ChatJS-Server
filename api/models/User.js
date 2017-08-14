@@ -39,6 +39,13 @@ module.exports = {
       via:'user'
     }
   },
+
+  getFriends: function (options, cb) {
+    User.findOne(options.id).exec(function (error, user) {
+      return user.contacts;
+    });
+  },
+
   beforeCreate: function(user, callback) {
     bcrypt.genSalt(10, function(error, salt) {
       bcrypt.hash(user.password, salt, function(error, hash){

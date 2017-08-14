@@ -26,7 +26,6 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': true,
 
   /***************************************************************************
   *                                                                          *
@@ -35,10 +34,15 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  'ContactController' :  {
-    '*': 'isAuthenticated'
+  '*': ['isAuthenticated'], // Everything resctricted here
+  'UserController': {
+    'create': true // We dont need authorization here, allowing public access
+  },
+
+  'AuthController': {
+    '*': true // We dont need authorization here, allowing public access
   }
- 
+
 	// RabbitController: {
 
 		// Apply the `false` policy as the default for all of RabbitController's actions

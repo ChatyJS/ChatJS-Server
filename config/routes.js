@@ -46,8 +46,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // Login
   'post /login' : 'AuthController.login',
 
-  '/logout' : 'AuthController.logout'
+  '/logout' : 'AuthController.logout',
 
+  // Friends
+  'get /friends/:userId' : 'FriendsController.getFriends'
 };
