@@ -42,7 +42,9 @@ module.exports = {
 
   getFriends: function (options, cb) {
     User.findOne(options.id).exec(function (error, user) {
-      return user.contacts;
+      if (error) return cb(error);
+      if (!user) return cb(new Error('User not found.'));
+      return cb(null, user.contacts);
     });
   },
 
