@@ -52,5 +52,7 @@ module.exports.routes = {
   '/logout' : 'AuthController.logout',
 
   // Friends
+  'post /friend' : 'FriendsController.addFriend',
+
   'get /friends' : 'FriendsController.getFriends'
 };

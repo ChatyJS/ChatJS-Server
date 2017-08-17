@@ -8,17 +8,13 @@
 module.exports = {
 
   attributes: {
-
-    name:{
-      type:'string',
+    user:{
+      model:'user',
       required:true
     },
-    status:{
-      type:'boolean'
-    },
-    user:{
-      model:'user'
+    friend:{
+      model:'user',
+      required:true
     }
-
   }
 };
