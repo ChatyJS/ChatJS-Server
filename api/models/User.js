@@ -31,40 +31,50 @@ module.exports = {
       required:true
     },
     contacts:{
-      collection:'contact',
-      via:'user'
+      collection:'user',
+      via:'friends',
+      dominant: true
     },
     logins:{
       collection:'login',
       via:'user'
+    },
+    friends: {
+      collection: 'user',
+      via: 'contacts'
     }
   },
 
   withUser: function (options, cb) {
-    User.findOne(options).exec(function (error, user) {
-      if (error) return cb(error);
-      if (!user) return cb(new Error('User not found.'));
-      return cb(null, user);
+    User
+      .findOne(options)
+      .populate('friends')
+      .populate('contacts')
+      .exec(function (error, user) {
+        if (error) return cb(error);
+        if (!user) return cb(new Error('User not found.'));
+        return cb(null, user);
     });
   },
 
   addFriend: function (options, cb) {
     User.withUser({ id: options.user.id }, function (error, user) {
       User.withUser({ name: options.friendName }, function (error, friend) {
-        Contact.create({
-          user: user,
-          friend: friend
-        }).exec(function (error, newFriend) {
+        if (error) return cb(error);
+        user.friends.add(friend.id);
+        user.contacts.add(friend.id);
+        user.save(function (error, user) {
           if (error) return cb(error);
-          return cb(null, newFriend);
+          return cb(null, user);
         });
       });
     });
   },
 
   getFriends: function (options, cb) {
-    User.withUser(options, function (error, user) {
-      return cb(null, user.contacts);
+    User.withUser({ id: options.id }, function (error, user) {
+      if (error) return cb(error);
+      return cb(null, user.friends);
     });
   },
 
