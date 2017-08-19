@@ -31,7 +31,7 @@ module.exports = {
     User.withUser({ id: options.user.id }, function (error, user) {
       User.withUser({ name: options.friendName }, function (error, friend) {
         ChannelGroup
-          .find(search, function (error, tmpChannel) {
+          .findOne(search).exec(function (error, tmpChannel) {
             if (tmpChannel) {
               return cb(null, tmpChannel);
             } else {
@@ -42,8 +42,9 @@ module.exports = {
                   user.channels.add(channel.id);
                   friend.channels.add(channel.id);
                   user.save(function (error, user) {
-                    if (error) return cb(error);
-                    return cb(null, channel);
+                    friend.save(function (error, user) {
+                      return cb(null, channel);
+                    });
                   });
                 });
             }
@@ -63,6 +64,7 @@ module.exports = {
     var search = { id: options.id };
     ChannelGroup
       .findOne(search)
+      .populate('users')
       .populate('messages')
       .exec(function (error, channel) {
         if (error) return cb(error);
