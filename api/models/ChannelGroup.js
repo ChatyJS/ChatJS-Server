@@ -19,11 +19,11 @@ module.exports = {
     },
     messages:{
       collection:'message',
-      via:'channel'
+      via:'channelgroup'
     },
-    logins:{
-      collection:'login',
-      via:'channel'
+    usergroups:{
+      collection:'usergroup',
+      via:'channelgroup'
     }
   }
 };

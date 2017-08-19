@@ -35,8 +35,8 @@ module.exports = {
       via:'friends',
       dominant: true
     },
-    logins:{
-      collection:'login',
+    usergroups:{
+      collection:'usergroup',
       via:'user'
     },
     friends: {

@@ -11,8 +11,8 @@ module.exports = {
     text:{
       type:'longtext'
     },
-    channel:{
-      model:'channel'
+    channelgroup:{
+      model:'channelgroup'
     }
   }
 };

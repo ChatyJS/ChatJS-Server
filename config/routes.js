@@ -54,5 +54,7 @@ module.exports.routes = {
   // Friends
   'post /friend' : 'FriendsController.addFriend',
 
-  'get /friends' : 'FriendsController.getFriends'
+  'get /friends' : 'FriendsController.getFriends',
+
+  'get /usergroup' : 'UserGroupController.getGroups'
 };
