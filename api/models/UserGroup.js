@@ -1,5 +1,5 @@
 /**
- * Login.js
+ * UserGroup.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -12,13 +12,11 @@ module.exports = {
     status:{
       type:'boolean'
     },
-    channel:{
-      model:'channel'
+    channelgroup:{
+      model:'channelgroup'
     },
     user:{
       model:'user'
     }
-
-
   }
 };
