@@ -29,14 +29,26 @@ module.exports = {
     var channelName = options.user.name + "-" + options.friendName;
     var search = { name: channelName };
     User.withUser({ id: options.user.id }, function (error, user) {
-      ChannelGroup
-        .findOrCreate(search, search, function (error, channel) {
-          user.channels.add(channel.id);
-          user.save(function (error, user) {
-            if (error) return cb(error);
-            return cb(null, channel);
+      User.withUser({ name: options.friendName }, function (error, friend) {
+        ChannelGroup
+          .find(search, function (error, tmpChannel) {
+            if (tmpChannel) {
+              return cb(null, tmpChannel);
+            } else {
+              var inverseName = options.friendName + "-" + options.user.name;
+              var newChannel = { name: inverseName };
+              ChannelGroup
+                .create(newChannel, function (error, channel) {
+                  user.channels.add(channel.id);
+                  friend.channels.add(channel.id);
+                  user.save(function (error, user) {
+                    if (error) return cb(error);
+                    return cb(null, channel);
+                  });
+                });
+            }
           });
-        });
+      });
     });
   },
 
