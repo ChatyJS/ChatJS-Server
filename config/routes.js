@@ -56,8 +56,13 @@ module.exports.routes = {
 
   'get /friends' : 'FriendsController.getFriends',
 
-  // Channels 
+  // Channels
   'post /channel' : 'ChannelGroupController.addChannel',
 
-  'get /channels' : 'ChannelGroupController.getChannels'
+  'get /channels' : 'ChannelGroupController.getChannels',
+
+  'get /channel/:channelId' : 'ChannelGroupController.getSingleChannel',
+
+  // Messages
+  'post /message' : 'MessageController.pushMessage'
 };

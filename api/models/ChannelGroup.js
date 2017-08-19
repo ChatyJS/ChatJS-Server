@@ -57,5 +57,16 @@ module.exports = {
       if (error) return cb(error);
       return cb(null, user.channels);
     });
+  },
+
+  getSingleChannel: function (options, cb) {
+    var search = { id: options.id };
+    ChannelGroup
+      .findOne(search)
+      .populate('messages')
+      .exec(function (error, channel) {
+        if (error) return cb(error);
+        return cb(null, channel);
+    });
   }
 };

@@ -37,5 +37,22 @@ module.exports = {
         channels: channels
       });
     });
+  },
+
+  getSingleChannel: function (req, res) {
+    var options = {
+      id: req.params.channelId
+    };
+    ChannelGroup.getSingleChannel(options, function (error, channel) {
+      if (error) {
+        return res.send({
+          error: error
+        });
+      }
+
+      return res.send({
+        channel: channel
+      });
+    });
   }
 };
