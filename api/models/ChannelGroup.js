@@ -23,5 +23,27 @@ module.exports = {
       via:'channelgroup',
       through: 'usergroup'
     }
+  },
+
+  addChannel: function (options, cb) {
+    var channelName = options.user.name + "-" + options.friendName;
+    var search = { name: channelName };
+    User.withUser({ id: options.user.id }, function (error, user) {
+      ChannelGroup
+        .findOrCreate(search, search, function (error, channel) {
+          user.channels.add(channel.id);
+          user.save(function (error, user) {
+            if (error) return cb(error);
+            return cb(null, channel);
+          });
+        });
+    });
+  },
+
+  getChannels: function (options, cb) {
+    User.withUser({ id: options.id }, function (error, user) {
+      if (error) return cb(error);
+      return cb(null, user.channels);
+    });
   }
 };

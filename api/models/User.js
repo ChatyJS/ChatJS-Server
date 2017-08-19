@@ -55,6 +55,7 @@ module.exports = {
       .findOne(options)
       .populate('friends')
       .populate('contacts')
+      .populate('channels')
       .exec(function (error, user) {
         if (error) return cb(error);
         if (!user) return cb(new Error('User not found.'));
