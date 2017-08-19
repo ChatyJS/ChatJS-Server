@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+<<<<<<< HEAD
   addChannel: function (req, res) {
     var options = {
       user: req.user,
