@@ -25,6 +25,19 @@ module.exports = {
     }
   },
 
+  withChannel: function (options, cb) {
+    ChannelGroup
+      .findOne(options)
+      .populate('users')
+      .populate('name')
+      .populate('description')
+      .exec(function (error, channelgroup) {
+        if (error) return cb(error);
+        if (!user) return cb(new Error('ChannelGroup not found.'));
+        return cb(null, channelgroup);
+    });
+  },
+
   addChannel: function (options, cb) {
     var channelName = options.user.name + "-" + options.friendName;
     var search = { name: channelName };
