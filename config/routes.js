@@ -65,4 +65,6 @@ module.exports.routes = {
 
   // Messages
   'post /message' : 'MessageController.pushMessage'
+
+  'get /groups' : 'ChannelGroupController.getGroups'
 };

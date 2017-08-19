@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+<<<<<<< HEAD
   addChannel: function (req, res) {
     var options = {
       user: req.user,
@@ -53,6 +54,31 @@ module.exports = {
       return res.send({
         channel: channel
       });
+    });
+  },
+
+  getGroups: function (req, res) {
+
+    //groups.push({'name': 'Fiesta', 'members': ['yo', 'tu']});
+
+
+
+    ChannelGroup.getChannels(req.user, function (error, channels) {
+      if (error) {
+        return res.send({
+          error: error
+        });
+      }
+      let groups = [];
+      channels.map((channel)=>{
+        ChannelGroup.withChannel({ id: channel.id }, function (error, group) {
+          if (error) return cb(error);
+            groups.push({'name': channel.name, 'members': group.users});
+            //groups.push({'name': 'Misa', 'members': [{'name': 'Jhon'}, {name:'Carito'}]});
+        });
+      });
+      groups.push({'name': 'Fiesta', 'members': [{'name': 'yo'}, {name:'tu'}], 'other': channels});
+      return res.send({groups: groups});
     });
   }
 };
