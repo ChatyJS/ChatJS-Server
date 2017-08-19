@@ -6,13 +6,16 @@
  */
 
 module.exports = {
-
   attributes: {
     text:{
       type:'longtext'
     },
     channelgroup:{
       model:'channelgroup'
+    },
+    author: {
+      model: 'user',
+      unique: true
     }
   }
 };

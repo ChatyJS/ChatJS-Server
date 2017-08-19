@@ -8,10 +8,6 @@
 module.exports = {
 
   attributes: {
-
-    status:{
-      type:'boolean'
-    },
     channelgroup:{
       model:'channelgroup'
     },

@@ -14,16 +14,14 @@ module.exports = {
     description:{
       type:'string'
     },
-    date:{
-      type:'datetime'
-    },
     messages:{
       collection:'message',
       via:'channelgroup'
     },
-    usergroups:{
-      collection:'usergroup',
-      via:'channelgroup'
+    users:{
+      collection:'user',
+      via:'channelgroup',
+      through: 'usergroup'
     }
   }
 };

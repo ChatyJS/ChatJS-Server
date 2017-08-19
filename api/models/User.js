@@ -35,13 +35,18 @@ module.exports = {
       via:'friends',
       dominant: true
     },
-    usergroups:{
-      collection:'usergroup',
-      via:'user'
+    channels:{
+      collection:'channelgroup',
+      via:'user',
+      through: 'usergroup'
     },
     friends: {
       collection: 'user',
       via: 'contacts'
+    },
+    message: {
+      collection: 'message',
+      via: 'author'
     }
   },
 
